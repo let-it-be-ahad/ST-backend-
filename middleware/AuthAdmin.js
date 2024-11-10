@@ -5,14 +5,15 @@ const authAdmin = async (req, res, next) => {
     try {
         // Fetch token from headers
         const { atoken } = req.headers;
-        console.log(atoken);
-        console.log(req.headers)
+        console.log('Token in headers:', atoken);  // Log token to verify it's being sent
+
         if (!atoken) {
             return res.status(401).json({
                 success: false,
                 message: "No token provided"
             });
         }
+
         // Verify the token by decoding it
         const token_decode = jwt.verify(atoken, process.env.JWT_SECRET_KEY);
 
@@ -24,11 +25,10 @@ const authAdmin = async (req, res, next) => {
             });
         }
 
-        // If all is correct, call the next function
+        // If everything is valid, proceed to the next middleware
         next();
 
     } catch (error) {
-        // console.log(error);
         return res.status(401).json({
             success: false,
             message: error.message
@@ -37,5 +37,3 @@ const authAdmin = async (req, res, next) => {
 };
 
 export default authAdmin;
-
-

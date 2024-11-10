@@ -1,14 +1,14 @@
 import validator from 'validator';
 import bcrypt from 'bcryptjs';
 import employeeModel from '../models/EmployeeModel.js';  
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
 // API for adding employee
 const addEmployee = async (req, res) => {
     try {
-        const { name, email, password, speciality, company, experience, about, fee, address, available } = req.body;
+        const { name, email, password, speciality, company } = req.body;
 
-        if (!name || !email || !password || !speciality || !company || !experience || !about || !fee || !address || !available) {
+        if (!name || !email || !password ) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required"
@@ -108,4 +108,4 @@ const allEmployee = async (req, res) => {
     }
 }
 
-export { addEmployee, loginAdmin, allEmployee }; 
+export { addEmployee, loginAdmin, allEmployee };
