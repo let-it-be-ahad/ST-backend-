@@ -97,7 +97,7 @@ const allEmployee = async (req, res) => {
         const employee = await employeeModel.find({}).select("-password"); 
         return res.status(200).json({
             success: true,
-            employee,  // Changed 'mechanic' to 'employee'
+            employee,  
             message: "Data fetched successfully "
         });
     } catch (error) {
